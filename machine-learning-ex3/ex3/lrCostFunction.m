@@ -38,9 +38,9 @@ grad = zeros(size(theta));
 
 h = sigmoid(X * theta);
 
-temp = [0 ; theta(2:end, :)];
+theta1 = [0 ; theta(2:end, :)];
 J = ( (-y)'*log(h) - (1-y)'*log(1-h) )/m + lambda*(theta1'*theta1)/(2*m);
-grad = 
+grad = (X'*(h-y) + lambda*theta1)/m;
 
 
 
