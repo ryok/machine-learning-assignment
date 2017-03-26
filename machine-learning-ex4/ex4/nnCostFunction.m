@@ -63,13 +63,20 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
+a1 = [ones(m, 1) X]';
+z2 = a1' * Theta1';
+a2 = [ones(size(z2, 1), 1) sigmoid(z2)];
+z3 = a2 * Theta2';
+a3 = sigmoid(z3);
+h = a3;
 
+Y = zeros(size(a3)); % 5000 examples by 10 labels
 
+for i = 1:num_labels
+	Y(:, i) = (y == i); % put a 1 in the column for the rows in y that match i. do this for each label
+end
 
-
-
-
-
+J = (1 / m) * sum(sum(-Y .* log(a3) - (1 - Y) .* log(1 - a3)));
 
 
 
