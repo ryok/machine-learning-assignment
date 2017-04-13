@@ -24,9 +24,30 @@ sigma = 0.3;
 %
 
 
+fprintf('--------------------------------------------------------------------------------\n');
+fprintf('start searching best [C, sigma] values\n');
+error_min = inf;
+values = [0.01 0.03 0.1 0.3 1 3 10 30];
+for _C = values
+  for _sigma = values
 
+    model = svmTrain(X, y, _C, @(x1, x2) gaussianKernel(x1, x2, _sigma));
+    predictions = svmPredict(model, Xval);
+    e = mean(double(predictions ~= yval));
+    fprintf('prediction error: %f\n', e);
+    if (e <= error_min)
+      fprintf('error_min updated!\n');
+      C = _C;
+      sigma = _sigma;
+      error_min = e;
+      fprintf('[C, sigma] = [%f %f]\n', C, sigma);
+    end
+    fprintf('--------\n');
+  end
+end
 
-
+fprintf('\nfinish searching.\nBest value [C, sigma] = [%f %f] with prediction error = %f\n\n', C, sigma, error_min);
+fprintf('--------------------------------------------------------------------------------\n');
 
 
 % =========================================================================
