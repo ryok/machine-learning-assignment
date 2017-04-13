@@ -27,11 +27,14 @@ centroids = zeros(K, n);
 %
 
 
-
-
-
-
-
+fprintf('---computeCentroids------- \n');
+%fprintf('X %f \n', size(X));
+%fprintf('idx %f \n', size(idx));
+%fprintf('K %f \n', size(K));
+for k = 1:K
+    assigned = X(find(idx == k), :);
+    centroids(k, :) = sum(assigned) / size(assigned, 1);
+end
 
 % =============================================================
 

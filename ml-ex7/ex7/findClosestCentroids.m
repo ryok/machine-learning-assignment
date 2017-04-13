@@ -21,8 +21,9 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-fprintf('diff \n');
-fprintf('X : %f \n', size(X));
+%fprintf('------------- \n');
+%fprintf('X : %f \n', size(X));
+%fprintf('centroids : %f \n', size(centroids));
 for i = 1:size(X, 1)
     dist = zeros(K, 1);
     for j = 1:K
