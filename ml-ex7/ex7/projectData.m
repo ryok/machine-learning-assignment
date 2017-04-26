@@ -18,8 +18,13 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+fprintf('--- projectData -- \n');
+fprintf('X %f \n', size(X));
+fprintf('U %f \n', size(U));
+fprintf('K %f \n', size(K));
 
-
+U_reduce = U(:, 1:K);
+Z = X * U_reduce;
 
 % =============================================================
 

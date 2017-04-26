@@ -20,7 +20,10 @@ S = zeros(n);
 %       number of examples).
 %
 
-
+%fprintf('------ pca ¥n');
+%fprintf(' X %f ¥n', size(X));
+sigma = (X' * X) / m;
+[U, S, V] = svd(sigma);
 
 
 
